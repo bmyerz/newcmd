@@ -7,8 +7,21 @@ set -o errexit
 
 CMD_DIR=$HOME/sbin
 cmdname=$1
+historical=${2:-""}
+
 
 pushd $CMD_DIR
+
+if [[ -n $historical ]]; then
+    # enable history
+    shellname=`basename $SHELL`
+    HISTFILE=$HOME/.$shellname_history
+    set -o history
+
+    # newcmd never overwrites
+    history | grep '^ '"$historical" | awk '{$1=""; print $0}' >> $cmdname.sh
+fi
+
 $EDITOR $cmdname.sh
 make $cmdname
 popd
