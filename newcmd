@@ -5,10 +5,17 @@
 set -o nounset
 set -o errexit
 
+
 CMD_DIR=$HOME/sbin
 cmdname=$1
 
 pushd $CMD_DIR
+
+while read line
+do
+    echo $line >>$cmdname.sh 
+done < /dev/stdin
+
 $EDITOR $cmdname.sh
 make $cmdname
 popd
