@@ -5,7 +5,7 @@
 set -o nounset
 set -o errexit
 
-CMD_DIR=$HOME/sbin
+CMD_DIR=$HOME/bin
 cmdname=$1
 
 pushd $CMD_DIR
