@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+set -o nounset
+CMD_DIR=$HOME/bin
+
+cmdname=$1
+pushd $CMD_DIR
+rm $cmdname.sh $cmdname
+popd
